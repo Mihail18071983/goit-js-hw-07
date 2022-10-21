@@ -1,21 +1,22 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
 
-const refs =  {
-    imageContainer: document.querySelector('.gallery'),
-}
 
-console.log(refs.imageContainer);
+const refs = {
+  imageContainer: document.querySelector(".gallery"),
+};
+
 
 const cardgalleryMarkup = makegalleryItems(galleryItems);
-refs.imageContainer.insertAdjacentHTML('beforeend', cardgalleryMarkup)
- 
-function makegalleryItems(items)
-{
-   return items.map(({ preview, description, original }) => {
-   return `<div class="gallery__item">
+
+refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
+console.log(refs.imageContainer)
+
+function makegalleryItems(items) {
+  return items
+    .map(({ preview, description, original }) => {
+      return `<div class="gallery__item">
     <a class="gallery__link" href="${original}">
     <img
       class="gallery__image"
@@ -24,20 +25,31 @@ function makegalleryItems(items)
       alt="${description}"
     />
   </a>
-</div>`
-}).join('');} 
+</div>`;
+    })
+    .join("");
+}
+
+// import * as basicLightbox from 'basiclightbox'
+
+function createModalWindow(imageAdress) {
+  const instance = basicLightbox.create(`
+    <img src="${imageAdress}">
+`);
+ instance.show();
+}
 
 
+refs.imageContainer.addEventListener("click", onClickOpenModal);
 
 
+function onClickOpenModal(event) {
+  event.preventDefault();
+  if (!event.target.classList.contains('gallery__image')) {
+    return;
+  }
+  console.log(event.target.closest('.gallery__link'))
+  const originalImageRef = event.target.closest('.gallery__link').href
+  createModalWindow(originalImageRef);
+}
 
-/* <div class="gallery__item">
-  <a class="gallery__link" href="large-image.jpg">
-    <img
-      class="gallery__image"
-      src="small-image.jpg"
-      data-source="large-image.jpg"
-      alt="Image description"
-    />
-  </a>
-</div> */

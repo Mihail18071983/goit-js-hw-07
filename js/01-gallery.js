@@ -26,10 +26,9 @@ function makegalleryItems(items) {
 }
 
 const createModalWindow=(imageAdress)=> {
-  const instance = basicLightbox.create(`
+   window.instance = basicLightbox.create(`
     <img src="${imageAdress}">
 `);
-  // instance.show();
   return instance;
 }
 
@@ -51,9 +50,9 @@ function onClickOpenModal(event) {
 function closeModalWindowByEscPressing(event) {
   const ESC_KEY_CODE = "Escape";
   if (event.code === ESC_KEY_CODE) {
-    
+     instance.close()
   }
 }
 
-window.addEventListener("keydown", closeModalWindowByEscPressing, true);
+window.addEventListener("keydown", closeModalWindowByEscPressing);
 

@@ -1,17 +1,12 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
-
-
 
 const refs = {
   imageContainer: document.querySelector(".gallery"),
 };
 
-
 const cardgalleryMarkup = makegalleryItems(galleryItems);
 
 refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
-console.log(refs.imageContainer)
 
 function makegalleryItems(items) {
   return items
@@ -21,7 +16,7 @@ function makegalleryItems(items) {
     <img
       class="gallery__image"
       src="${preview}"
-      data-source="${preview}"
+      data-source="${original}"
       alt="${description}"
     />
   </a>
@@ -30,26 +25,35 @@ function makegalleryItems(items) {
     .join("");
 }
 
-// import * as basicLightbox from 'basiclightbox'
-
-function createModalWindow(imageAdress) {
+const createModalWindow=(imageAdress)=> {
   const instance = basicLightbox.create(`
     <img src="${imageAdress}">
 `);
- instance.show();
+  // instance.show();
+  return instance;
 }
+
+
 
 
 refs.imageContainer.addEventListener("click", onClickOpenModal);
 
-
 function onClickOpenModal(event) {
   event.preventDefault();
-  if (!event.target.classList.contains('gallery__image')) {
+  if (!event.target.classList.contains("gallery__image")) {
     return;
   }
-  console.log(event.target.closest('.gallery__link'))
-  const originalImageRef = event.target.closest('.gallery__link').href
-  createModalWindow(originalImageRef);
+  const originalImageRef = event.target.dataset.source;
+  createModalWindow(originalImageRef).show();
+  
 }
+
+function closeModalWindowByEscPressing(event) {
+  const ESC_KEY_CODE = "Escape";
+  if (event.code === ESC_KEY_CODE) {
+    
+  }
+}
+
+window.addEventListener("keydown", closeModalWindowByEscPressing, true);
 

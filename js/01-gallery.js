@@ -2,6 +2,7 @@ import { galleryItems } from "./gallery-items.js";
 
 const refs = {
   imageContainer: document.querySelector(".gallery"),
+  body: document.body,
 };
 
 const cardgalleryMarkup = makegalleryItems(galleryItems);
@@ -25,15 +26,12 @@ function makegalleryItems(items) {
     .join("");
 }
 
-const createModalWindow=(imageAdress)=> {
-   window.instance = basicLightbox.create(`
+const createModalWindow = (imageAdress) => {
+  window.instance = basicLightbox.create(`
     <img src="${imageAdress}">
 `);
   return instance;
-}
-
-
-
+};
 
 refs.imageContainer.addEventListener("click", onClickOpenModal);
 
@@ -44,15 +42,13 @@ function onClickOpenModal(event) {
   }
   const originalImageRef = event.target.dataset.source;
   createModalWindow(originalImageRef).show();
-  
 }
 
 function closeModalWindowByEscPressing(event) {
   const ESC_KEY_CODE = "Escape";
-  if (event.code === ESC_KEY_CODE) {
-     instance.close()
+  if (event.code === ESC_KEY_CODE && instance.visible()) {
+    instance.close();
   }
 }
 
-window.addEventListener("keydown", closeModalWindowByEscPressing);
-
+refs.body.addEventListener("keydown", closeModalWindowByEscPressing);

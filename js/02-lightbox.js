@@ -1,7 +1,5 @@
-import { galleryItems } from './gallery-items.js';
-// Change code below this line
+import { galleryItems } from "./gallery-items.js";
 
-console.log(galleryItems);
 
 const refs = {
   imageContainer: document.querySelector(".gallery"),
@@ -15,13 +13,15 @@ refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
 function makegalleryItems(items) {
   return items
     .map(({ preview, description, original }) => {
-      return `<a class="gallery__item" href="${original}">
-    <img
-      class="gallery__image"
-      src="${preview}"
-      alt="${description}"
-    />
-  </a>`;
+      return `<li class="gallery__item"><a class="gallery__item" href="${original}">
+  <img class="gallery__image" src="${preview}" alt="${description}" />
+</a></li>`;
     })
     .join("");
 }
+
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
+

@@ -23,9 +23,11 @@ function createAddGallery(countOfImages) {
   return additionalGalleryItems;
 }
 
-createAddGallery(countOfGAllrey);
+console.dir(createAddGallery(countOfGAllrey));
+
 
 function makegalleryItems(items) {
+createAddGallery(countOfGAllrey);
   return items
     .map(({ preview, description, original }) => {
       return `<li class="gallery__item"><a class="gallery__link" href="${original}">

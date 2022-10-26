@@ -6,9 +6,24 @@ const refs = {
   body: document.body,
 };
 
-const cardgalleryMarkup = makegalleryItems(galleryItems);
 
-refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
+
+const additionalGalleryItems = [...galleryItems];
+let countOfGAllrey = 20;
+
+function createAddGallery(countOfImages) {
+  for (let i = 1; i <= countOfImages; i += 1) {
+    let preview = `https://picsum.photos/id/${2 * i + 3}/340/`;
+    let original = `https://picsum.photos/id/${2 * i + 3}/1280/`;
+    let description= `random id ${
+         2*i +3
+      }`
+    additionalGalleryItems.push({ preview, original, description });
+  }
+  return additionalGalleryItems;
+}
+
+createAddGallery(countOfGAllrey);
 
 function makegalleryItems(items) {
   return items
@@ -19,6 +34,10 @@ function makegalleryItems(items) {
     })
     .join("");
 }
+
+const cardgalleryMarkup = makegalleryItems(additionalGalleryItems);
+
+refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
 
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",

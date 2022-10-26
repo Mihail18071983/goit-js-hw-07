@@ -11,11 +11,11 @@ const refs = {
 const additionalGalleryItems = [...galleryItems];
 let countOfGAllrey = 20;
 
-function createAddGallery(countOfImages) {
+const  createAddGallery = (countOfImages) => {
   for (let i = 1; i <= countOfImages; i += 1) {
     let preview = `https://picsum.photos/id/${2 * i + 3}/340/`;
     let original = `https://picsum.photos/id/${2 * i + 3}/1280/`;
-    let description= `random id ${
+    let description= `random  ${
          2*i +3
       }`
     additionalGalleryItems.push({ preview, original, description });
@@ -23,11 +23,9 @@ function createAddGallery(countOfImages) {
   return additionalGalleryItems;
 }
 
-console.dir(createAddGallery(countOfGAllrey));
+createAddGallery(countOfGAllrey)
 
-
-function makegalleryItems(items) {
-createAddGallery(countOfGAllrey);
+const makegalleryItemsMarcup = (items, createAddGallery) => {
   return items
     .map(({ preview, description, original }) => {
       return `<li class="gallery__item"><a class="gallery__link" href="${original}">
@@ -37,9 +35,9 @@ createAddGallery(countOfGAllrey);
     .join("");
 }
 
-const cardgalleryMarkup = makegalleryItems(additionalGalleryItems);
+const cardgalleryMarkupCurrent = makegalleryItemsMarcup(additionalGalleryItems);
 
-refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
+refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkupCurrent);
 
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",

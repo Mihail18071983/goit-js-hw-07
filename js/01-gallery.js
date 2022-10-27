@@ -51,4 +51,8 @@ function closeModalWindowByEscPressing(event) {
   }
 }
 
+if (instance.visible()) {
+  refs.body.classList.add('disable-scroll');
+}
+
 refs.body.addEventListener("keydown", closeModalWindowByEscPressing);

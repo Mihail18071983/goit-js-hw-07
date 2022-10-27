@@ -42,17 +42,15 @@ function onClickOpenModal(event) {
   }
   const originalImageRef = event.target.dataset.source;
   createModalWindow(originalImageRef).show();
+  refs.body.classList.add('disable-scroll')
 }
 
 function closeModalWindowByEscPressing(event) {
   const ESC_KEY_CODE = "Escape";
   if (event.code === ESC_KEY_CODE && instance.visible()) {
     instance.close();
+    refs.body.classList.remove('disable-scroll');
   }
-}
-
-if (instance.visible()) {
-  refs.body.classList.add('disable-scroll');
 }
 
 refs.body.addEventListener("keydown", closeModalWindowByEscPressing);

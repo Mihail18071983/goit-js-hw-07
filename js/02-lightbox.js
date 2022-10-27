@@ -26,6 +26,10 @@ function makegalleryItems(items) {
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
-  scrollZoom:false,
+  scrollZoom: false,
+});
+
+lightbox.on('shown.simplelightbox', function () {
+  refs.body.classList.add('disable-scroll');
 });
 

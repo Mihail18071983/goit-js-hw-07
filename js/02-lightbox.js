@@ -3,7 +3,6 @@ import { addGalleryItems } from './addGallery-items.js';
 
 const newGalleryItems = [...galleryItems, ...addGalleryItems];
 
-console.log(newGalleryItems);
 
 const refs = {
   imageContainer: document.querySelector(".gallery"),
@@ -28,3 +27,4 @@ const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
 });
+

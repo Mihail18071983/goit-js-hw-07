@@ -1,5 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
-
+import { addGalleryItems } from './addGallery-items';
 
 const refs = {
   imageContainer: document.querySelector(".gallery"),
@@ -8,22 +8,22 @@ const refs = {
 
 
 
-const additionalGalleryItems = [...galleryItems];
-let countOfGAllrey = 20;
+const NewGalleryItems = [...galleryItems,...addGalleryItems];
+// let countOfGAllrey = 20;
 
-const  createAddGallery = (countOfImages) => {
-  for (let i = 1; i <= countOfImages; i += 1) {
-    let preview = `https://picsum.photos/id/${2 * i + 3}/340/`;
-    let original = `https://picsum.photos/id/${2 * i + 3}/1280/`;
-    let description= `random  ${
-         2*i +3
-      }`
-    additionalGalleryItems.push({ preview, original, description });
-  }
-  return additionalGalleryItems;
-}
+// const  createAddGallery = (countOfImages) => {
+//   for (let i = 1; i <= countOfImages; i += 1) {
+//     let preview = `https://picsum.photos/id/${2 * i + 3}/340/`;
+//     let original = `https://picsum.photos/id/${2 * i + 3}/1280/`;
+//     let description= `random  ${
+//          2*i +3
+//       }`
+//     additionalGalleryItems.push({ preview, original, description });
+//   }
+//   return additionalGalleryItems;
+// }
 
-createAddGallery(countOfGAllrey)
+// createAddGallery(countOfGAllrey)
 
 const makegalleryItemsMarcup = (items, createAddGallery) => {
   return items

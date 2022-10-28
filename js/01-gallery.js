@@ -14,7 +14,7 @@ function makegalleryItems(items) {
     .map(({ preview, description, original }) => {
       return `<div class="gallery__item">
     <a class="gallery__link" href="${original}">
-    <img
+    <img loading="lazy" width="354 height="240"
       class="gallery__image"
       src="${preview}"
       data-source="${original}"

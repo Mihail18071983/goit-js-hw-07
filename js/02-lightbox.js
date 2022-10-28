@@ -33,4 +33,27 @@ lightbox.on("shown.simplelightbox", function () {
 });
 lightbox.on("closed.simplelightbox", function () {
   refs.body.classList.remove("disable-scroll");
-})
+});
+
+refs.imageContainer.addEventListener("load", onImageLoaded);
+
+function onImageLoaded(event) {
+  event.preventDefault();
+  if (event.target.classList.contains("gallery__image")) {
+    return;
+  }
+  refs.event.target.classList.add("appear");
+  console.log(event.target);
+}
+
+// const lazyImages = refs.imageContainer.querySelectorAll(".gallery__image");
+
+// lazyImages.forEach((image) =>
+//   image.addEventListener("load", onImageLoaded, { once: true })
+// );
+
+// function onImageLoaded(event) {
+//   event.target.classList.add("appear");
+//   console.log(event.target)
+//   console.log("image dawnloading");
+// }

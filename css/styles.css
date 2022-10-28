@@ -1,6 +1,6 @@
 :root {
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  --animation-duration: 250ms;
+  --animation-duration: 1000ms;
 }
 
 .gallery {
@@ -17,9 +17,13 @@
 }
 
 .gallery__item {
-  position: relative;
+  /* position: relative; */
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.gallery__link {
+  position: relative;
 }
 
 .gallery__image:hover {
@@ -27,10 +31,21 @@
 }
 
 .gallery__image {
+  position: absolute;
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transition: transform var(--animation-duration) var(--timing-function);
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--animation-duration) var(--timing-function) 1s;
+ 
+}
+
+.gallery__image.appear {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 .gallery__link {

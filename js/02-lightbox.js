@@ -16,7 +16,7 @@ function makegalleryItems(items) {
   return items
     .map(({ preview, description, original }) => {
       return `<li class="gallery__item"><a class="gallery__link" href="${original}">
-  <img loading="lazy" width="350" height="240" class="gallery__image" src="${preview}" alt="${description}" />
+  <img loading="lazy" width="354" height="240" class="gallery__image" src="${preview}" alt="${description}" />
 </a></li>`;
     })
     .join("");
@@ -35,25 +35,15 @@ lightbox.on("closed.simplelightbox", function () {
   refs.body.classList.remove("disable-scroll");
 });
 
-refs.imageContainer.addEventListener("load", onImageLoaded);
+
+const lazyImages = refs.imageContainer.querySelectorAll(".gallery__image");
+
+lazyImages.forEach((image) =>
+  image.addEventListener("load", onImageLoaded, { once: true })
+);
 
 function onImageLoaded(event) {
-  event.preventDefault();
-  if (event.target.classList.contains("gallery__image")) {
-    return;
-  }
-  refs.event.target.classList.add("appear");
-  console.log(event.target);
+  event.target.classList.add("appear");
+  console.log(event.target)
+  console.log("image dawnloading");
 }
-
-// const lazyImages = refs.imageContainer.querySelectorAll(".gallery__image");
-
-// lazyImages.forEach((image) =>
-//   image.addEventListener("load", onImageLoaded, { once: true })
-// );
-
-// function onImageLoaded(event) {
-//   event.target.classList.add("appear");
-//   console.log(event.target)
-//   console.log("image dawnloading");
-// }

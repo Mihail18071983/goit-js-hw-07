@@ -14,7 +14,7 @@ function makegalleryItems(items) {
     .map(({ preview, description, original }) => {
       return `<div class="gallery__item">
     <a class="gallery__link" href="${original}">
-    <img loading="lazy" width="354 height="240"
+    <img loading="lazy" width="354" height="240"
       class="gallery__image"
       src="${preview}"
       data-source="${original}"
@@ -54,3 +54,15 @@ function closeModalWindowByEscPressing(event) {
 }
 
 refs.body.addEventListener("keydown", closeModalWindowByEscPressing);
+
+const lazyImages = refs.imageContainer.querySelectorAll(".gallery__image");
+
+lazyImages.forEach((image) =>
+  image.addEventListener("load", onImageLoaded, { once: true })
+);
+
+function onImageLoaded(event) {
+  event.target.classList.add("appear");
+  console.log(event.target)
+  console.log("image dawnloading");
+}

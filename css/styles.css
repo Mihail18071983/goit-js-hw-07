@@ -44,12 +44,8 @@
   visibility: visible;
 }
 
-/* .gallery__image:hover {
+.gallery__image:hover {
   transform: scale(1.03);
-} */
-
-.hover {
-  transform:scale(1.03) ;
 }
 
 .gallery__link {

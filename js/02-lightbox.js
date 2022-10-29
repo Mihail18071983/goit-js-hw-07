@@ -45,3 +45,13 @@ lazyImages.forEach((image) =>
 function onImageLoaded(event) {
   event.target.classList.add("appear");
 }
+
+lazyImages.forEach((image) =>
+  image.addEventListener("mouseenter", onMouseEnter)
+);
+
+
+function onMouseEnter(event) {
+  event.target.style.transitionDelay = '100ms';
+  event.target.style.transitionDuration = "500ms";
+}

@@ -65,22 +65,14 @@ function onImageLoaded(event) {
   event.target.classList.add("appear");
 }
 
-// lazyImages.forEach((image) =>
-//   image.addEventListener("mouseenter", onMouseEnter)
-// );
+lazyImages.forEach((image) =>
+  image.addEventListener("mouseenter", onMouseEnter)
+);
 
-// lazyImages.forEach((image) =>
-//   image.addEventListener("mouseleave", onMouseLeave)
-// );
 
-// function onMouseEnter(event) {
-//   console.log(event.target);
-//   console.log(event.target.style);
-//   event.target.style.transform = "scale(1.03)";
-//   event.target.style.transitionTimingFunction = "cubic-bezier(0.4, 0, 0.2, 1)";
-//   event.target.style.transitionDuration = "250ms";
-// }
+function onMouseEnter(event) {
+  event.target.style.transitionDelay = '100ms';
+  event.target.style.transitionDuration = "500ms";
+}
 
-// function onMouseLeave(event) {
-//   event.target.style.transform = "scale(1)";
-// }
+

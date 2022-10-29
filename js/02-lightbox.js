@@ -44,6 +44,4 @@ lazyImages.forEach((image) =>
 
 function onImageLoaded(event) {
   event.target.classList.add("appear");
-  console.log(event.target)
-  console.log("image dawnloading");
 }

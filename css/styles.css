@@ -26,16 +26,12 @@
   position: relative;
 } */
 
-.gallery__image:hover {
-  transform: scale(1.03);
-}
 
 .gallery__image {
-  position: absolute;
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transform: translateX(-50%);
+  transform: translateX(-100%);
   opacity: 0;
   visibility: hidden;
   transition: all var(--animation-duration) var(--timing-function) 1000ms;
@@ -46,6 +42,14 @@
   transform: translateX(0);
   opacity: 1;
   visibility: visible;
+}
+
+/* .gallery__image:hover {
+  transform: scale(1.03);
+} */
+
+.hover {
+  transform:scale(1.03) ;
 }
 
 .gallery__link {

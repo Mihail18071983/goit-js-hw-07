@@ -53,7 +53,13 @@ function closeModalWindowByEscPressing(event) {
   }
 }
 
+function closeModalwindowByMouseClick() {
+  refs.body.classList.remove("disable-scroll");
+}
+
+
 refs.body.addEventListener("keydown", closeModalWindowByEscPressing);
+refs.body.addEventListener('mousedown', closeModalwindowByMouseClick)
 
 const lazyImages = refs.imageContainer.querySelectorAll(".gallery__image");
 
@@ -69,10 +75,8 @@ lazyImages.forEach((image) =>
   image.addEventListener("mouseenter", onMouseEnter)
 );
 
-
 function onMouseEnter(event) {
-  event.target.style.transitionDelay = '100ms';
+  event.target.style.transitionDelay = "100ms";
   event.target.style.transitionDuration = "500ms";
 }
-
 

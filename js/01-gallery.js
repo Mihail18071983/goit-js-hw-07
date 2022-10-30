@@ -5,10 +5,6 @@ const refs = {
   body: document.body,
 };
 
-const cardgalleryMarkup = makegalleryItems(galleryItems);
-
-refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
-
 function makegalleryItems(items) {
   return items
     .map(({ preview, description, original }) => {
@@ -26,10 +22,21 @@ function makegalleryItems(items) {
     .join("");
 }
 
+const cardgalleryMarkup = makegalleryItems(galleryItems);
+refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
+
+
 const createModalWindow = (imageAdress) => {
-  window.instance = basicLightbox.create(`
+  window.instance = basicLightbox.create(
+    `
     <img src="${imageAdress}">
-`);
+`,
+    {
+      onClose: () => {
+        refs.body.classList.remove("disable-scroll");
+      },
+    }
+  );
   return instance;
 };
 
@@ -53,13 +60,7 @@ function closeModalWindowByEscPressing(event) {
   }
 }
 
-function closeModalwindowByMouseClick() {
-  refs.body.classList.remove("disable-scroll");
-}
-
-
 refs.body.addEventListener("keydown", closeModalWindowByEscPressing);
-refs.body.addEventListener('mousedown', closeModalwindowByMouseClick)
 
 const lazyImages = refs.imageContainer.querySelectorAll(".gallery__image");
 
@@ -79,4 +80,3 @@ function onMouseEnter(event) {
   event.target.style.transitionDelay = "100ms";
   event.target.style.transitionDuration = "500ms";
 }
-

@@ -25,14 +25,16 @@ function makegalleryItems(items) {
 const cardgalleryMarkup = makegalleryItems(galleryItems);
 refs.imageContainer.insertAdjacentHTML("beforeend", cardgalleryMarkup);
 
-
 const createModalWindow = (imageAdress) => {
   window.instance = basicLightbox.create(
     `
     <img src="${imageAdress}">
 `,
     {
+      onShow: () =>
+        window.addEventListener("keydown", closeModalWindowByEscPressing),
       onClose: () => {
+        window.removeEventListener("keydown", closeModalWindowByEscPressing);
         refs.body.classList.remove("disable-scroll");
       },
     }
@@ -59,8 +61,6 @@ function closeModalWindowByEscPressing(event) {
     refs.body.classList.remove("disable-scroll");
   }
 }
-
-refs.body.addEventListener("keydown", closeModalWindowByEscPressing);
 
 const lazyImages = refs.imageContainer.querySelectorAll(".gallery__image");
 
